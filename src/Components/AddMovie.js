@@ -16,13 +16,13 @@ const AddMovie = () => {
     setMovie({ ...movie, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    console.log(movie);
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
+    const addMovie = await axios
       .post("https://backendmovie-ruza.onrender.com/api/movies", movie)
       .then(navigate("/"))
       .catch((err) => console.error(err));
+    console.log(addMovie);
   };
 
   return (
@@ -59,7 +59,9 @@ const AddMovie = () => {
           placeholder="Rating"
           onChange={handleChange}
         />
-        <button style={{backgroundColor:'#0056b3'}} type="submit">Add Movie</button>
+        <button style={{ backgroundColor: "#0056b3" }} type="submit">
+          Add Movie
+        </button>
       </form>
     </div>
   );
